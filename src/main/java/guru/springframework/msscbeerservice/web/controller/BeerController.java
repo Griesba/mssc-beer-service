@@ -4,8 +4,10 @@ import guru.springframework.msscbeerservice.web.model.BeerDto;
 import guru.springframework.msscbeerservice.web.model.BeerStyleEnum;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.UUID;
 
 @RestController
@@ -22,12 +24,12 @@ public class BeerController {
     }
 
     @PostMapping
-    public ResponseEntity create(@RequestBody BeerDto beerDto){
+    public ResponseEntity create(@Valid @RequestBody BeerDto beerDto){
         return new ResponseEntity(BeerDto.builder().id(UUID.randomUUID()).build(), HttpStatus.CREATED);
     }
 
     @PutMapping("/{beerId}")
-    public ResponseEntity update(@PathVariable UUID beerId, @RequestBody BeerDto beerDto){
+    public ResponseEntity update(@PathVariable UUID beerId, @Validated @RequestBody BeerDto beerDto){
         return new ResponseEntity(BeerDto.builder().build(), HttpStatus.NO_CONTENT);
     }
 }
