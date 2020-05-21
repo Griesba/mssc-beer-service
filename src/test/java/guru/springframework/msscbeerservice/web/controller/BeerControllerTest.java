@@ -39,11 +39,11 @@ class BeerControllerTest {
 
     @Test
     void create() throws Exception {
-        BeerDto beerDto = BeerDto.builder().build();
+        BeerDto beerDto = BeerDto.builder().id(UUID.randomUUID()).build();
         mockMvc.perform(post(BeerController.BASE_URL)
                     .accept(MediaType.APPLICATION_JSON)
                     .contentType(MediaType.APPLICATION_JSON)
-                    .accept(objectMapper.writeValueAsString(beerDto)))
+                    .content(objectMapper.writeValueAsString(beerDto)))
                 .andExpect(status().isCreated());
     }
 
@@ -51,7 +51,7 @@ class BeerControllerTest {
     void update() throws Exception {
         BeerDto beerDto = BeerDto.builder().build();
         mockMvc.perform(put(BeerController.BASE_URL + "/" + UUID.randomUUID())
-                    .accept(objectMapper.writeValueAsString(beerDto))
+                    .content(objectMapper.writeValueAsString(beerDto))
                     .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNoContent());
     }
