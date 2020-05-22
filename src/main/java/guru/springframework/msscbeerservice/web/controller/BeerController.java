@@ -10,6 +10,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.UUID;
 
 @RequiredArgsConstructor
@@ -20,6 +21,11 @@ public class BeerController {
     public static final String BASE_URL = "/api/v1/beer";
 
     private final BeerService beerService;
+
+    @GetMapping
+    public List<BeerDto> getAll(){
+        return beerService.findAll();
+    }
 
     @GetMapping("/{beerId}")
     public ResponseEntity getBeerById(@PathVariable UUID beerId) {

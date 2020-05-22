@@ -2,6 +2,7 @@ package guru.springframework.msscbeerservice.services;
 
 import guru.springframework.msscbeerservice.web.model.BeerDto;
 
+import java.util.List;
 import java.util.UUID;
 
 public interface BeerService {
@@ -11,4 +12,6 @@ public interface BeerService {
     BeerDto saveNewBeer(BeerDto beerDto);
 
     BeerDto update(UUID beerId, BeerDto beerDto);
+
+    List<BeerDto> findAll();
 }
