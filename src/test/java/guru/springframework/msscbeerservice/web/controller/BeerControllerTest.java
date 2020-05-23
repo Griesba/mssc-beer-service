@@ -37,7 +37,7 @@ class BeerControllerTest {
 
         BDDMockito.given(beerService.getById(any(), anyBoolean())).willReturn(getValidBeerDto());
 
-        mockMvc.perform(get(BeerController.BASE_URL + "/" + UUID.randomUUID())
+        mockMvc.perform(get(BeerController.BASE_URL + "/beer/" + UUID.randomUUID())
                     .contentType(MediaType.APPLICATION_JSON)
                     .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
@@ -49,7 +49,7 @@ class BeerControllerTest {
 
         BDDMockito.given(beerService.saveNewBeer(any())).willReturn(beerDto);
 
-        mockMvc.perform(post(BeerController.BASE_URL)
+        mockMvc.perform(post(BeerController.BASE_URL + "/beer")
                     .accept(MediaType.APPLICATION_JSON)
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(objectMapper.writeValueAsString(beerDto)))
@@ -63,7 +63,7 @@ class BeerControllerTest {
         BDDMockito.given(beerService.update(any(), any()))
                 .willReturn(getValidBeerDto());
 
-        mockMvc.perform(put(BeerController.BASE_URL + "/" + UUID.randomUUID())
+        mockMvc.perform(put(BeerController.BASE_URL + "/beer/" + UUID.randomUUID())
                     .content(objectMapper.writeValueAsString(beerDto))
                     .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNoContent());
