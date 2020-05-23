@@ -38,10 +38,10 @@ public class BeerDto implements Serializable {
     private OffsetDateTime lastModifiedDate;
 
     @NotEmpty
-    private String name;
+    private String beerName;
 
     @NotNull
-    private BeerStyleEnum beerStyleEnum;
+    private BeerStyleEnum beerStyle;
 
     @NotNull
     private String upc;
@@ -49,5 +49,6 @@ public class BeerDto implements Serializable {
     @NotNull
     @JsonFormat(shape = JsonFormat.Shape.STRING)
     private BigDecimal price;
+
     private Integer quantityOnHand;
 }

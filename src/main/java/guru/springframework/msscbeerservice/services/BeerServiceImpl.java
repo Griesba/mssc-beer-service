@@ -54,8 +54,8 @@ public class BeerServiceImpl implements BeerService {
     @Override
     public BeerDto update(UUID beerId, BeerDto beerDto) {
         Beer beer = beerRepository.findById(beerId).orElseThrow(RuntimeException::new);
-        beer.setBeerName(beerDto.getName());
-        beer.setBeerStyle(beerDto.getBeerStyleEnum().name());
+        beer.setBeerName(beerDto.getBeerName());
+        beer.setBeerStyle(beerDto.getBeerStyle().name());
         beer.setPrice(beerDto.getPrice());
         beer.setUpc(beerDto.getUpc());
         return beerMapper.beerToBeerDto(beerRepository.save(beer));
