@@ -2,3 +2,5 @@
 [![codecov](https://codecov.io/gh/Griesba/mssc-beer-service/branch/master/graph/badge.svg)](https://codecov.io/gh/Griesba/mssc-beer-service)
 
 
+MySQL pool connection optimization with HikariCP
+https://github.com/brettwooldridge/HikariCP/wiki/MySQL-Configuration
