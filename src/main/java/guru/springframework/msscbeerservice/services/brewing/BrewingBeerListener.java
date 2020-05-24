@@ -12,6 +12,8 @@ import org.springframework.jms.annotation.JmsListener;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
 @Slf4j
 @RequiredArgsConstructor
 @Service
@@ -20,6 +22,7 @@ public class BrewingBeerListener {
     private final BeerRepository beerRepository;
     private final JmsTemplate jmsTemplate;
 
+    @Transactional// prevent Hibernate to run out of session when using lazy initialization
     @JmsListener(destination = JmsConfig.BREWING_REQUEST_QUEUE)
     public void listen(BeerEvent beerEvent){
         BeerDto beerDto = beerEvent.getBeerDto();

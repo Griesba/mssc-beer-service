@@ -6,12 +6,14 @@ import lombok.*;
 
 import java.io.Serializable;
 
-@RequiredArgsConstructor
+
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class BeerEvent implements Serializable {
 
     private static  final long serialVersionUID = -1221301598159835088L;
 
-    private final BeerDto beerDto;
+    private BeerDto beerDto;
 }
