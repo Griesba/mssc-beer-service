@@ -1,9 +1,10 @@
 package guru.springframework.msscbeerservice.services.brewing;
 
+import guru.sfg.common.events.NewInventoryEvent;
 import guru.springframework.msscbeerservice.config.JmsConfig;
 import guru.springframework.msscbeerservice.domain.Beer;
-import guru.springframework.msscbeerservice.events.BeerEvent;
-import guru.springframework.msscbeerservice.events.BrewBeerEvent;
+import guru.sfg.common.events.BeerEvent;
+import guru.sfg.common.events.BrewBeerEvent;
 import guru.springframework.msscbeerservice.repositories.BeerRepository;
 import guru.springframework.msscbeerservice.web.model.BeerDto;
 import lombok.RequiredArgsConstructor;
@@ -31,11 +32,11 @@ public class BrewingBeerListener {
 
         beerDto.setQuantityOnHand(beer.getQuantityToBrew());
 
-        BrewBeerEvent brewBeerEvent = new BrewBeerEvent(beerDto);
+        NewInventoryEvent newInventoryEvent = new NewInventoryEvent(beerDto);
 
         log.debug("Brewed beer " + beer.getMinOnHand() + " QOH: "+ beerDto.getQuantityOnHand());
 
-        jmsTemplate.convertAndSend(JmsConfig.NEW_INVENTORY_QUEUE, brewBeerEvent);
+        jmsTemplate.convertAndSend(JmsConfig.NEW_INVENTORY_QUEUE, newInventoryEvent);
 
     }
 }
