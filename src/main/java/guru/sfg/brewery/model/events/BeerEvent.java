@@ -1,7 +1,7 @@
-package guru.brewery.model.events;
+package guru.sfg.brewery.model.events;
 
 
-import guru.brewery.model.BeerDto;
+import guru.sfg.brewery.model.BeerDto;
 import lombok.*;
 
 import java.io.Serializable;
