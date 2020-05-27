@@ -1,12 +1,11 @@
 package guru.springframework.msscbeerservice.services.brewing;
 
-import guru.sfg.common.events.NewInventoryEvent;
+import guru.brewery.model.events.NewInventoryEvent;
 import guru.springframework.msscbeerservice.config.JmsConfig;
 import guru.springframework.msscbeerservice.domain.Beer;
-import guru.sfg.common.events.BeerEvent;
-import guru.sfg.common.events.BrewBeerEvent;
+import guru.brewery.model.events.BeerEvent;
 import guru.springframework.msscbeerservice.repositories.BeerRepository;
-import guru.springframework.msscbeerservice.web.model.BeerDto;
+import guru.brewery.model.BeerDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.jms.annotation.JmsListener;
