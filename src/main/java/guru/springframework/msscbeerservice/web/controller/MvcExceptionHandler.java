@@ -14,10 +14,10 @@ import java.util.List;
 public class MvcExceptionHandler {
 
     @ExceptionHandler(ConstraintViolationException.class)
-    public ResponseEntity<List> handleConstraintViolation(ConstraintViolationException e){
+    public ResponseEntity<List> handleConstraintViolation(ConstraintViolationException e) {
         List<String> errors = new ArrayList<>(e.getConstraintViolations().size());
         e.getConstraintViolations().stream().forEach(ex -> {
-            errors.add(ex.getPropertyPath() + ":"+ex.getMessage());
+            errors.add(ex.getPropertyPath() + ":" + ex.getMessage());
         });
         return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
     }

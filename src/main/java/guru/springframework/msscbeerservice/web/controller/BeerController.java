@@ -28,18 +28,18 @@ public class BeerController {
 
     private final BeerService beerService;
 
-    @GetMapping(path = "/beer", produces = { "application/json" })
+    @GetMapping(path = "/beer", produces = {"application/json"})
     public ResponseEntity<BeerPagedList> listBeers(@RequestParam(value = "pageNumber", required = false) Integer pageNumber,
                                                    @RequestParam(value = "pageSize", required = false) Integer pageSize,
                                                    @RequestParam(value = "beerName", required = false) String beerName,
                                                    @RequestParam(value = "beerStyle", required = false) BeerStyleEnum beerStyle,
-                                                   @RequestParam(value = "showInventoryOnHand", required = false) Boolean showInventoryOnHand){
+                                                   @RequestParam(value = "showInventoryOnHand", required = false) Boolean showInventoryOnHand) {
 
-        if (showInventoryOnHand == null){
+        if (showInventoryOnHand == null) {
             showInventoryOnHand = false;
         }
 
-        if (pageNumber == null || pageNumber < 0){
+        if (pageNumber == null || pageNumber < 0) {
             pageNumber = DEFAULT_PAGE_NUMBER;
         }
 
@@ -64,14 +64,14 @@ public class BeerController {
     }
 
     @PostMapping("/beer")
-    public ResponseEntity create(@Valid @RequestBody BeerDto beerDto){
+    public ResponseEntity create(@Valid @RequestBody BeerDto beerDto) {
         return new ResponseEntity(
                 beerService.saveNewBeer(beerDto),
                 HttpStatus.CREATED);
     }
 
     @PutMapping("/beer/{beerId}")
-    public ResponseEntity update(@PathVariable UUID beerId, @Validated @RequestBody BeerDto beerDto){
+    public ResponseEntity update(@PathVariable UUID beerId, @Validated @RequestBody BeerDto beerDto) {
         return new ResponseEntity(beerService.update(beerId, beerDto), HttpStatus.NO_CONTENT);
     }
 

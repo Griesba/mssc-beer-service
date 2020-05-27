@@ -38,8 +38,8 @@ class BeerControllerTest {
         BDDMockito.given(beerService.getById(any(), anyBoolean())).willReturn(getValidBeerDto());
 
         mockMvc.perform(get(BeerController.BASE_URL + "/beer/" + UUID.randomUUID())
-                    .contentType(MediaType.APPLICATION_JSON)
-                    .accept(MediaType.APPLICATION_JSON))
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
 
@@ -50,9 +50,9 @@ class BeerControllerTest {
         BDDMockito.given(beerService.saveNewBeer(any())).willReturn(beerDto);
 
         mockMvc.perform(post(BeerController.BASE_URL + "/beer")
-                    .accept(MediaType.APPLICATION_JSON)
-                    .contentType(MediaType.APPLICATION_JSON)
-                    .content(objectMapper.writeValueAsString(beerDto)))
+                .accept(MediaType.APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(beerDto)))
                 .andExpect(status().isCreated());
     }
 
@@ -64,12 +64,12 @@ class BeerControllerTest {
                 .willReturn(getValidBeerDto());
 
         mockMvc.perform(put(BeerController.BASE_URL + "/beer/" + UUID.randomUUID())
-                    .content(objectMapper.writeValueAsString(beerDto))
-                    .contentType(MediaType.APPLICATION_JSON))
+                .content(objectMapper.writeValueAsString(beerDto))
+                .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNoContent());
     }
 
-    BeerDto getValidBeerDto(){
+    BeerDto getValidBeerDto() {
         return BeerDto.builder()
                 .beerName("My Beer")
                 .beerStyle(BeerStyleEnum.ALE)

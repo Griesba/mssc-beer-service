@@ -25,7 +25,7 @@ public class BrewingBeerListener {
 
     @Transactional// prevent Hibernate to run out of session when using lazy initialization
     @JmsListener(destination = JmsConfig.BREWING_REQUEST_QUEUE)
-    public void listen(BeerEvent beerEvent){
+    public void listen(BeerEvent beerEvent) {
         BeerDto beerDto = beerEvent.getBeerDto();
 
         Beer beer = beerRepository.getOne(beerDto.getId());
@@ -34,7 +34,7 @@ public class BrewingBeerListener {
 
         NewInventoryEvent newInventoryEvent = new NewInventoryEvent(beerDto);
 
-        log.debug("Brewed beer " + beer.getMinOnHand() + " QOH: "+ beerDto.getQuantityOnHand());
+        log.debug("Brewed beer " + beer.getMinOnHand() + " QOH: " + beerDto.getQuantityOnHand());
 
         jmsTemplate.convertAndSend(JmsConfig.NEW_INVENTORY_QUEUE, newInventoryEvent);
 
